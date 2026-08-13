@@ -1,0 +1,16 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "aiosqlite>=0.22.1",
+    "asyncmy>=0.2.13",
+    "fastapi-pagination>=0.15.16",
+    "fastapi[standard]>=0.128.8",
+    "itsdangerous>=2.2.0",
+    "python-dotenv>=1.2.2",
+    "sqlmodel>=0.0.39",
+    "typer>=0.27.0",
+]

@@ -1,0 +1,66 @@
+body {
+  background: #f7f8fa;
+  color: #1f2937;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Top banner (màu sáng, dùng ảnh banner cũ) */
+.top-banner {
+  background-image: url("/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding: 2.5rem 0;
+  border-bottom: 3px solid #1671bf;
+}
+.top-banner-title {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+.top-banner-subtitle {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* Navbar sáng */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e7eaf0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+.navbar-item {
+  color: #1f2937;
+  font-weight: 600;
+}
+.navbar-item:hover,
+.navbar-item.is-active {
+  background: #eef6ff !important;
+  color: #1671bf !important;
+}
+.navbar-logo {
+  height: 36px;
+  width: auto;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+main {
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+/* Footer sáng */
+.footer-light {
+  background: #ffffff;
+  border-top: 4px solid #1671bf;
+  padding: 2rem 0;
+}
+.footer-light .title {
+  color: #0f4f95;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
