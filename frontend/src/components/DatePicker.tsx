@@ -23,7 +23,10 @@ export default function DatePicker({
   const inputRef = useRef<HTMLInputElement>(null);
   const instanceRef = useRef<flatpickr.Instance | null>(null);
   const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
+
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
 
   const now = new Date();
   const currentYear = now.getFullYear();
