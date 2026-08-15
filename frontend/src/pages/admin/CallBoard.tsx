@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DatePicker from "../../components/DatePicker.js";
 import {
   getQueueBoard,
   callNext,
@@ -70,13 +71,12 @@ export default function CallBoard() {
       <div className="field">
         <label className="label is-size-6">Ngày thăm gặp</label>
         <div className="control">
-          <input
-            className="input"
-            type="text"
-            inputMode="numeric"
-            placeholder="DD/MM/YYYY"
+          <DatePicker
             value={visitDateDmy}
-            onChange={(e) => setVisitDateDmy(e.target.value)}
+            onChange={setVisitDateDmy}
+            startYear={new Date().getFullYear() - 1}
+            endYear={new Date().getFullYear() + 2}
+            defaultYear={new Date().getFullYear()}
           />
         </div>
       </div>

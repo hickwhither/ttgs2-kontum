@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent, ReactNode } from "react";
 import { Link } from "react-router-dom";
+import DatePicker from "../components/DatePicker.js";
 import {
   createRegistration,
   SESSION_LABELS,
@@ -19,39 +20,22 @@ const DATE_FIELDS = [
   "visit_date",
 ];
 
+const currentYear = new Date().getFullYear();
+
 const emptyForm: RegistrationPayload = {
   relative_full_name: "",
-  relative_date_of_birth: "",
+  relative_date_of_birth: "01/01/1990",
   relative_registered_residence: "",
   relative_id_number: "",
   relative_relationship: "",
   prisoner_full_name: "",
-  prisoner_date_of_birth: "",
+  prisoner_date_of_birth: "01/01/1988",
   prisoner_registered_residence: "",
   prisoner_offense: "",
-  prisoner_arrest_date: "",
+  prisoner_arrest_date: `01/01/${currentYear - 2}`,
   visit_date: toDmy(todayIso()),
   visit_session: "morning",
 };
-
-interface DateFieldProps {
-  value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-function DateField({ value, onChange }: DateFieldProps) {
-  return (
-    <input
-      className="input"
-      type="text"
-      inputMode="numeric"
-      placeholder="DD/MM/YYYY"
-      value={value}
-      onChange={onChange}
-      required
-    />
-  );
-}
 
 interface FieldProps {
   label: string;
@@ -162,7 +146,13 @@ export default function Register() {
             </div>
             <div className="column is-12-mobile is-6-tablet">
               <Field label="Ngày, tháng, năm sinh">
-                <DateField value={form.relative_date_of_birth} onChange={set("relative_date_of_birth")} />
+                <DatePicker
+                  value={form.relative_date_of_birth}
+                  onChange={(v) => setForm((prev) => ({ ...prev, relative_date_of_birth: v }))}
+                  startYear={1950}
+                  endYear={currentYear}
+                  defaultYear={1990}
+                />
               </Field>
             </div>
             <div className="column is-12">
@@ -193,7 +183,13 @@ export default function Register() {
             </div>
             <div className="column is-12-mobile is-6-tablet">
               <Field label="Ngày, tháng, năm sinh">
-                <DateField value={form.prisoner_date_of_birth} onChange={set("prisoner_date_of_birth")} />
+                <DatePicker
+                  value={form.prisoner_date_of_birth}
+                  onChange={(v) => setForm((prev) => ({ ...prev, prisoner_date_of_birth: v }))}
+                  startYear={1950}
+                  endYear={currentYear}
+                  defaultYear={1988}
+                />
               </Field>
             </div>
             <div className="column is-12">
@@ -208,7 +204,13 @@ export default function Register() {
             </div>
             <div className="column is-12-mobile is-6-tablet">
               <Field label="Ngày bắt">
-                <DateField value={form.prisoner_arrest_date} onChange={set("prisoner_arrest_date")} />
+                <DatePicker
+                  value={form.prisoner_arrest_date}
+                  onChange={(v) => setForm((prev) => ({ ...prev, prisoner_arrest_date: v }))}
+                  startYear={1950}
+                  endYear={currentYear}
+                  defaultYear={currentYear - 2}
+                />
               </Field>
             </div>
           </div>
@@ -219,7 +221,13 @@ export default function Register() {
           <div className="columns is-multiline">
             <div className="column is-12-mobile is-6-tablet">
               <Field label="Ngày thăm gặp dự kiến">
-                <DateField value={form.visit_date} onChange={set("visit_date")} />
+                <DatePicker
+                  value={form.visit_date}
+                  onChange={(v) => setForm((prev) => ({ ...prev, visit_date: v }))}
+                  startYear={currentYear - 1}
+                  endYear={currentYear + 2}
+                  defaultYear={currentYear}
+                />
               </Field>
             </div>
             <div className="column is-12-mobile is-6-tablet">
