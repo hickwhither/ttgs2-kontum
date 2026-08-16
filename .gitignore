@@ -12,3 +12,6 @@ frontend/dist/
 # Tooling
 .pytest_cache/
 .vite/
+
+# Backup / Deploy
+backups/

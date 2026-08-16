@@ -10,6 +10,7 @@ dist/
 *.egg-info/
 .env
 .env.local
+*.db
 node_modules/
 .pytest_cache/
 .coverage

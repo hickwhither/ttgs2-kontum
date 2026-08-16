@@ -1,7 +1,7 @@
-# Backend TTGS2 - Hệ thống đăng ký thăm gặp
+# Backend TTGS2
 
-Backend FastAPI + SQLModel (async) cho hệ thống đăng ký thăm gặp thân nhân –
-Trại tạm giam số 2 (Kon Tum).
+Backend FastAPI + SQLModel (async)
+[Recommend Docker setup](/README.md)
 
 ## Yêu cầu
 
@@ -18,8 +18,8 @@ copy example.env .env   # Windows
 # cp example.env .env    # Linux/macOS
 ```
 
-Mặc định dùng SQLite (`sqlite+aiosqlite:///./database.db`). Muốn dùng MariaDB/MySQL
-thì sửa `DATABASE_URL=mysql+asyncmy://user:password@host:3306/dbname` trong `.env`.
+Mặc định, hệ thống dùng SQLite (`sqlite+aiosqlite:///./database.db`).
+Để dùng MariaDB/MySQL, thay đổi `DATABASE_URL=mysql+asyncmy://user:password@host:3306/dbname` trong `.env`.
 
 ## Tạo tài khoản quản trị
 
@@ -42,13 +42,13 @@ Các lệnh quản trị:
 ```
 
 - Tài liệu API: <http://localhost:8000/docs>
-- Bảng dữ liệu tự động tạo khi khởi động lần đầu.
+- Hệ thống tự động tạo bảng dữ liệu khi khởi động lần đầu.
 
 ## API chính
 
 | Phương thức | Đường dẫn | Mô tả |
 |---|---|---|
-| `GET` | `/api/registrations` | Danh sách hồ sơ (bộ lọc `status`, `visit_date`, `relative_id_number`, `relative_full_name`, `prisoner_full_name`; phân trang `limit`, `offset`) |
+| `GET` | `/api/registrations` | Danh sách hồ sơ (bộ lọc `status`, `visit_date`, `relative_id_number`, `relative_full_name`, `prisoner_full_name`, phân trang `limit`, `offset`) |
 | `POST` | `/api/registrations` | Tạo hồ sơ đăng ký mới (công khai) |
 | `GET` | `/api/registrations/{id}` | Chi tiết hồ sơ |
 | `PUT` | `/api/registrations/{id}` | Cập nhật toàn bộ (cần đăng nhập admin) |
@@ -61,6 +61,6 @@ Các lệnh quản trị:
 | `POST` | `/api/auth/logout` | Đăng xuất |
 | `GET` | `/api/auth/me` | Thông tin admin đang đăng nhập |
 
-Quy tắc số gọi: hồ sơ được xác nhận (`confirmed`) sẽ tự động được cấp số gọi
-tăng dần theo `visit_date` + `visit_session`; khi hồ sơ rời trạng thái đã xác nhận,
-số gọi được xóa.
+Quy tắc số gọi. Hệ thống tự động cấp số gọi cho hồ sơ đã xác nhận.
+Số gọi tăng dần theo `visit_date` và `visit_session`.
+Khi hồ sơ rời trạng thái đã xác nhận, hệ thống xóa số gọi.
