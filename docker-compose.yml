@@ -30,7 +30,7 @@ services:
       SESSION_SAME_SITE: lax
       # SESSION_HTTPS_ONLY: false  # bỏ comment nếu test qua http
       SESSION_HTTPS_ONLY: "true"
-      ALLOWED_ORIGINS: https://dangkythamgap-traitamgiamso2.hw.io.vn
+      ALLOWED_ORIGINS: <domain>
     expose:
       - "8000"
 
@@ -50,7 +50,6 @@ services:
         condition: service_started
     networks:
       - default
-    command: tunnel run --token eyJhIjoiNWYxYjU0YjliMzI1NjYyMTQ4Zjk0OTUxMzFkZWM3NzMiLCJ0IjoiNjlmNTM4MGEtMTcxMS00ZjEzLTk3MjgtM2VmMmEwYTQ1YmI4IiwicyI6Ik5qbG1ZekEyTmpRdE5tVXpPQzAwWW1Nd0xUazFZbU10TTJGbE1qbGtaVFUwTmpOaiJ9
-
+    command: tunnel run --token <token>
 volumes:
   dbdata: {}
