@@ -1,0 +1,16 @@
+{
+  "cwd": ".",
+  "name": "Trại tạm giam số 2",
+  "framework": "react-typescript",
+  "package": "zmp-ui",
+  "newProject": true,
+  "template": "single-view",
+  "theming": {
+    "customColor": true,
+    "color": "#1565C0",
+    "darkTheme": false,
+    "iconFonts": false,
+    "fillBars": false,
+    "useUiKits": true
+  }
+}

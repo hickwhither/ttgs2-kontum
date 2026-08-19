@@ -29,11 +29,20 @@ def create_app():
         "http://127.0.0.1:5173",
         "http://localhost:3000",
     ]
+
+    # Mini app chạy trong webview của Zalo nên có origin thuộc hạ tầng Zalo.
+    # Các origin này không nằm trong ALLOWED_ORIGINS nên dùng regex để cho phép.
+    allow_origin_regex = os.getenv("ALLOWED_ORIGIN_REGEX") or (
+        r"^(https://[a-z0-9-]*\.zalo\.me|https://[a-z0-9-]*\.zdn\.vn"
+        r"|zbrowswer://.*|http://localhost:\d+)$"
+    )
     print("ALLOWED ORIGINS:", allow_origins)
+    print("ALLOWED ORIGIN REGEX:", allow_origin_regex)
 
     app.add_middleware(
         CORSMiddleware,
         allow_origins=allow_origins,
+        allow_origin_regex=allow_origin_regex,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

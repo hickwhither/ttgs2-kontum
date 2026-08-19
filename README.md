@@ -10,6 +10,7 @@
 ```
 backend/          # API FastAPI (models, schemas, security, queue, routers, seed)
 frontend/         # React + TS + Bulma SPA (Trang chủ, Đăng ký, Tra cứu, Bảng số gọi, Quản trị)
+zalo-miniapp/     # Zalo Mini App - React + TS + zmp-ui (Đăng ký, Tra cứu, Bảng số gọi)
 ```
 
 ## Quy trình đăng ký & bảng số gọi
@@ -101,3 +102,45 @@ make restore FILE=backups/backup-20260101-120000.sql
 ```
 
 > Lưu ý: file backup trong `backups/` phải được copy ra ngoài máy chủ để giữ an toàn.
+
+## Zalo Mini App
+
+Zalo Mini App (`zalo-miniapp/`) chạy trong Zalo, cho phép thân nhân đăng ký thăm gặp, tra cứu hồ sơ, và xem bảng số gọi trực tiếp từ ứng dụng Zalo.
+
+### Setup
+
+```bash
+cd zalo-miniapp
+npm install
+cp .env-sample .env        # VITE_API_BASE=https://ttgs2.hw.io.vn/api
+npm run start              # dev server tại localhost:3000
+```
+
+### Cấu trúc
+
+| Thư mục | Mô tả |
+|---|---|
+| `src/pages/index.tsx` | Trang chủ (3 lối vào) |
+| `src/pages/register.tsx` | Đăng ký thăm gặp |
+| `src/pages/lookup.tsx` | Tra cứu theo CCCD / họ tên |
+| `src/pages/board.tsx` | Bảng số gọi (tự cập nhật 10s) |
+| `src/api.ts` | API client, types, constants |
+| `app-config.json` | Cấu hình Zalo Mini App (nav bar, màu sắc) |
+
+### Triển khai lên Zalo
+
+1. Tạo tài khoản tại [developers.zalo.me](https://developers.zalo.me)
+2. Tạo Mini App tại [mini.zalo.me](https://mini.zalo.me/developers) → lấy **Mini App ID**
+3. Chạy `zmp init` trong thư mục `zalo-miniapp/` và nhập Mini App ID (hoặc thêm appId vào `zmp-cli.json`)
+4. Login & deploy:
+
+```bash
+cd zalo-miniapp
+npm run build
+zmp login          # quét QR bằng Zalo
+zmp deploy         # upload lên Zalo
+```
+
+### CORS
+
+Backend đã cấu hình `ALLOWED_ORIGIN_REGEX` để tự động chấp nhận các origin thuộc Zalo (`*.zalo.me`, `*.zdn.vn`, `zbrowswer://*`). Dev server (`localhost:3000`) cũng được cho phép. Nếu gặp lỗi CORS, kiểm tra `Origin` header trong DevTools Network và thêm vào `ALLOWED_ORIGINS` env nếu cần.

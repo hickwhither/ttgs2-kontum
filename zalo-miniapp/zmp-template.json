@@ -1,0 +1,10 @@
+{
+  "name": "ttgs2",
+  "options": {
+    "primaryColor": {
+      "title": "Màu chủ đạo",
+      "description": "Màu chính của ứng dụng",
+      "type": "color"
+    }
+  }
+}

@@ -30,7 +30,7 @@ services:
       SESSION_SAME_SITE: lax
       # SESSION_HTTPS_ONLY: false  # bỏ comment nếu test qua http
       SESSION_HTTPS_ONLY: "true"
-      ALLOWED_ORIGINS: <domain>
+      ALLOWED_ORIGINS: https://ttgs2.hw.io.vn
     expose:
       - "8000"
 
